@@ -5,6 +5,7 @@ import {
   Routes
 } from 'react-router-dom';
 import LandingPage from './LandingPage/LandingPage';
+import Main from './Main/Main';
 import Register from './Register/Register';
 import Login from './Login/Login';
 
@@ -13,6 +14,7 @@ const Components = () => {
     <Router>
       <Routes>
         <Route path='/' element={<LandingPage />} />
+        <Route path='/main' element={<Main />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
       </Routes>
