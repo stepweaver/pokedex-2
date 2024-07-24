@@ -22,7 +22,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userRegistered = await createUser(newUser); // TODO: Implement this function
+    const userRegistered = await createUser(newUser);
     if (userRegistered) {
       alert(`${userRegistered.get('firstName')} has been registered!`);
       navigate('/profile'); // TODO: Create Profile module

@@ -24,7 +24,7 @@ export const createUser = async (newUser) => {
 
   try {
     const userCreated = await user.signUp();
-    console.log('User Created:', userCreated);
+    console.log('User Created: ', userCreated);
 
     // Create a Trainer Profile
     const Profile = Parse.Object.extend('Profile');

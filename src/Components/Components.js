@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import LandingPage from './LandingPage/LandingPage';
 import Register from './Register/Register';
+import Login from './Login/Login';
 
 const Components = () => {
   return (
@@ -13,6 +14,7 @@ const Components = () => {
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </Router>
   )
