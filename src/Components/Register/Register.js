@@ -25,7 +25,7 @@ const Register = () => {
     const userRegistered = await createUser(newUser);
     if (userRegistered) {
       alert(`${userRegistered.get('firstName')} has been registered!`);
-      navigate('/profile'); // TODO: Create Profile module
+      navigate('/profile/:userId'); // TODO: Create Profile module
     }
   };
 
