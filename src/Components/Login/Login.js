@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from './LoginForm';
+import { loginUser } from './loginService';
 import './LoginForm.css';
 
 const Login = () => {
@@ -17,13 +18,18 @@ const Login = () => {
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (user.email && user.password) {
-      alert(`Welcome back!`);
-      navigate('/profile'); // TODO: Create Profile module
+      try {
+        const loggedInUser = await loginUser(user.email, user.password);
+        alert(`Welcome back!`);
+        navigate(`/profile/${loggedInUser.id}`); // Navigate to the profile page with the user ID
+      } catch (error) {
+        console.error('Error while logging in', error);
+      }
     }
-  }
+  };
 
   return (
     <div className='login'>

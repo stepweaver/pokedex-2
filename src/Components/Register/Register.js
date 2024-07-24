@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RegisterForm from './RegisterForm';
-import { createUser } from './createUserService';
+import { createUser } from './registerService';
 
 const Register = () => {
   const navigate = useNavigate();

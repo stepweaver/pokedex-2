@@ -1,6 +1,6 @@
 import Parse from 'parse';
 
-const loginUser = async (username, password) => {
+export const loginUser = async (username, password) => {
   try {
     // Pass the username and password to logIn function
     let user = await Parse.User.logIn(username, password);
@@ -11,5 +11,3 @@ const loginUser = async (username, password) => {
     throw error;
   }
 };
-
-export default loginUser;

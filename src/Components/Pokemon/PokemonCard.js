@@ -23,8 +23,8 @@ const PokemonCard = ({ pokemon }) => {
   }
 
   return (
-    <Card className={`pokemon-card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip} sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+    <Card className={`pokemon-card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip} sx={{ maxWidth: 345 }}> 
+      <CardActionArea> 
         <CardMedia
           component="img"
           height="140"
@@ -38,14 +38,11 @@ const PokemonCard = ({ pokemon }) => {
           <div className={isFlipped ? "content flipped" : "content"}>
             <div className="pokemon-card-front">
               <div className="pokemon-types-container">
-                {pokemon.types && pokemon.types.map((type, index) => (
-                  <span
-                    key={index}
-                    className={`pokemon-types ${type.toLowerCase().trim()}`}
-                  >
-                    {type}
+                {pokemon.types && (
+                  <span className="pokemon-types">
+                    {pokemon.types.map(type => type.toLowerCase().trim()).join(' ')}
                   </span>
-                ))}
+                )}
               </div>
             </div>
             <div className="pokemon-card-back">
@@ -71,7 +68,7 @@ const PokemonCard = ({ pokemon }) => {
           </div>
         </CardContent>
       </CardActionArea>
-    </Card>
+    </Card> // TODO: Animate the card flip when the user clicks on it
   );
 };
 
