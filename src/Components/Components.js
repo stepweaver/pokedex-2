@@ -4,11 +4,13 @@ import {
   Route,
   Routes
 } from 'react-router-dom';
+import LandingPage from './LandingPage/LandingPage';
 
 const Components = () => {
   return (
     <Router>
       <Routes>
+        <Route path='/' element={<LandingPage />} />
       </Routes>
     </Router>
   )
