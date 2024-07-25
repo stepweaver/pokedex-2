@@ -36,7 +36,7 @@ const CommentsBox = ({ profileId }) => {
     setComments((prevComments) => [newComment, ...prevComments]);
   };
 
-  const colors = ['#FFCDD2', '#C8E6C9', '#BBDEFB', '#FFF9C4', '#D1C4E9'];
+  const colors = ['#FF00FF', '#00FF00', '#00FFFF', '#FFFF00', '#FF00FF'];
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -77,13 +77,16 @@ const CommentsBox = ({ profileId }) => {
               </Typography>
               <Typography
                 variant='caption'
-                color='textSecondary'
+                sx={{ fontWeight: 'bold' }}
                 className='comment-date'
               >
                 <em>{formatDate(comment.createdAt)}</em>
               </Typography>
             </Box>
-            <Typography variant='body1' sx={{ marginTop: 1 }}>
+            <Typography
+              variant='body2'
+              sx={{ marginTop: 1, fontWeight: 'bold' }}
+            >
               {comment.comment}
             </Typography>
           </Paper>
