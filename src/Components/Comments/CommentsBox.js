@@ -26,9 +26,13 @@ const CommentsBox = ({ profileId }) => {
     fetchComments();
   }, [profileId]);
 
+  const addComment = (newComment) => {
+    setComments(prevComments => [newComment, ...prevComments]);
+  };
+
   return (
     <div className="comments-box">
-      <Comments profileId={profileId} />
+      <Comments profileId={profileId} addComment={addComment} />
       <h2>Comments</h2>
       {comments.length > 0 ? (
         comments.map((comment, index) => (
