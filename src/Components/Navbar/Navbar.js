@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Parse from 'parse';
 import AppBar from '@mui/material/AppBar';
@@ -13,8 +13,12 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const currentUser = Parse.User.current();
+  useEffect(() => {
+    const user = Parse.User.current();
+    setCurrentUser(user);
+  }, []);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -33,7 +37,7 @@ const Navbar = () => {
         <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
           The Pokémon App
         </Typography>
-        <Button color='inherit' component={Link} to='/main'>Pokemon</Button>
+        <Button color='inherit' component={Link} to='/main'>Pokémon</Button>
         <Button color='inherit' component={Link} to='/trainers'>Trainers</Button>
         {currentUser ? (
           <Button color='inherit' component={Link} to={`/profile/${currentUser.id}`}>Profile</Button>
@@ -57,8 +61,15 @@ const Navbar = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem color='inherit' component={Link} to='/main'>Pokémon</MenuItem>
+          <MenuItem color='inherit' component={Link} to='/trainers'>Trainers</MenuItem>
+          {currentUser ? (
+            <MenuItem color='inherit' component={Link} to={`/profile/${currentUser.id}`}>Profile</MenuItem>
+          ) : (
+            <MenuItem color='inherit' component={Link} to='/login'>Login</MenuItem>
+          )}
+          <MenuItem color='inherit' component={Link} to='/about'>About</MenuItem>
+          <MenuItem color='inherit' component={Link} to='#'>Logout</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
@@ -66,3 +77,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+// TODO: Conditional rendering of Profile and Login buttons based on currentUser state in Navbar.js component is not working as expected. Fix it.

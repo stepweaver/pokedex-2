@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Parse from 'parse';
+import FriendsList from '../Friends/FriendsList.js';
+import AddRemoveFriend from '../Friends/AddRemoveFriends.js';
 import './Profile.css';
 
 const Profile = () => {
@@ -43,10 +45,19 @@ const Profile = () => {
     return <div>Loading...</div>; // TODO: Implement a loading spinner from material-ui
   }
 
+  const currentUser = Parse.User.current();
+  const isOwnProfile = currentUser && currentUser.id === userId;
+
   return (
     <div className="profile">
-      <h1>{username}</h1>
+      <h1>{username}'s Profile</h1>
       <p>{trainerBio}</p>
+      {isOwnProfile ? (
+        <FriendsList userId={userId} />
+      ) : (
+        <AddRemoveFriend userId={userId} />
+      )}
+      <h2>Caught Pokémon</h2>
       <ul>
         {caughtPokemons.map((pokemon, index) => (
           <li key={index}>{pokemon}</li>
