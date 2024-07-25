@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getPokemon } from '../Pokemon/getPokemonService';
+import { getPokemon, getPokemonTypes } from '../Pokemon/getPokemonService';
 import PokemonList from '../Pokemon/PokemonList';
 import SearchPokemon from '../Search/SearchPokemon';
 import './Main.css';
@@ -7,6 +7,7 @@ import './Main.css';
 const Main = () => {
   const [pokemon, setPokemon] = useState([]);
   const [filteredPokemon, setFilteredPokemon] = useState([]);
+  const [types, setTypes] = useState([]);
 
   useEffect(() => {
     const fetchPokemon = async () => {
@@ -15,7 +16,13 @@ const Main = () => {
       setFilteredPokemon(data);
     };
 
+    const fetchTypes = async () => {
+      const typesData = await getPokemonTypes();
+      setTypes(typesData);
+    };
+
     fetchPokemon();
+    fetchTypes();
   }, []);
 
   return (
@@ -24,6 +31,7 @@ const Main = () => {
       <SearchPokemon
         pokemon={pokemon}
         setFilteredPokemon={setFilteredPokemon}
+        types={types}
       />
       <br />
       <br />
