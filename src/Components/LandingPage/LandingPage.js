@@ -10,6 +10,7 @@ const LandingPage = () => {
         <Link to='/login'>
           <button>Login</button>
         </Link>
+        {' '} or {' '}
         <Link to='/register'>
           <button>Register</button>
         </Link>

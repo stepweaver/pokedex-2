@@ -50,7 +50,7 @@ const Profile = () => {
   const isOwnProfile = currentUser && currentUser.id === userId;
 
   return (
-    <div className="profile">
+    <div className='profile'>
       <h1>{username}'s Profile</h1>
       <p>{trainerBio}</p>
       {isOwnProfile ? (

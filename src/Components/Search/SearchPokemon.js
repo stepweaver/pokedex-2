@@ -21,7 +21,7 @@ const SearchPokemon = ({ pokemon, setFilteredPokemon }) => {
 
   return (
     <Autocomplete
-      id="search-pokemon"
+      id='search-pokemon'
       sx={{ width: 300 }}
       open={open}
       onOpen={() => setOpen(true)}
@@ -33,7 +33,7 @@ const SearchPokemon = ({ pokemon, setFilteredPokemon }) => {
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Search Pokémon"
+          label='Search Pokémon'
           sx={{ 
             '& .MuiOutlinedInput-root': {
               border: '2px solid #f0f0f0',
@@ -53,7 +53,7 @@ const SearchPokemon = ({ pokemon, setFilteredPokemon }) => {
             ...params.InputProps,
             endAdornment: (
               <React.Fragment>
-                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                {loading ? <CircularProgress color='inherit' size={20} /> : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>
             ),

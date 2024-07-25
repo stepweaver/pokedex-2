@@ -16,14 +16,14 @@ const Comments = ({ profileId, addComment }) => {
   };
 
   return (
-    <div className="comments">
+    <div className='comments'>
       <form onSubmit={handleSubmit}>
         <textarea
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
-          placeholder="Write a comment..."
+          placeholder='Write a comment...'
         />
-        <button type="submit">Submit</button>
+        <button type='submit'>Submit</button>
       </form>
     </div>
   );

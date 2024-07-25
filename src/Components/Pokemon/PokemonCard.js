@@ -26,43 +26,43 @@ const PokemonCard = ({ pokemon }) => {
     <Card className={`pokemon-card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip} sx={{ maxWidth: 345 }}> 
       <CardActionArea> 
         <CardMedia
-          component="img"
-          height="140"
+          component='img'
+          height='140'
           image={pokemon.image}
           alt={pokemon.name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant='h5' component='div'>
             {pokemon.name}
           </Typography>
-          <div className={isFlipped ? "content flipped" : "content"}>
-            <div className="pokemon-card-front">
-              <div className="pokemon-types-container">
+          <div className={isFlipped ? 'content flipped' : 'content'}>
+            <div className='pokemon-card-front'>
+              <div className='pokemon-types-container'>
                 {pokemon.types && (
-                  <span className="pokemon-types">
+                  <span className='pokemon-types'>
                     {pokemon.types.map(type => type.toLowerCase().trim()).join(' ')}
                   </span>
                 )}
               </div>
             </div>
-            <div className="pokemon-card-back">
-              <Typography variant="body2" color="text.secondary">
+            <div className='pokemon-card-back'>
+              <Typography variant='body2' color='text.secondary'>
                 hp - {pokemon.hp}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant='body2' color='text.secondary'>
                 Attack - {pokemon.attack}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant='body2' color='text.secondary'>
                 Defense - {pokemon.defense}
               </Typography>
               <input
-                type="checkbox"
+                type='checkbox'
                 checked={isCaught}
                 onChange={handleCatchChange}
                 id={`catch-${pokemon.name}`}
               />
               <label htmlFor={`catch-${pokemon.name}`}>
-                {isCaught ? "Caught" : "Catch"}
+                {isCaught ? 'Caught' : 'Catch'}
               </label>
             </div>
           </div>

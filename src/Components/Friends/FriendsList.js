@@ -40,7 +40,7 @@ const FriendsList = () => {
 
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
-      <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+      <Typography sx={{ mt: 4, mb: 2 }} variant='h6' component='div'>
         Friends List
       </Typography>
       <Demo>
