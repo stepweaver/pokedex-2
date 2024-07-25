@@ -33,6 +33,7 @@ export const createUser = async (newUser) => {
     profile.set('username', username); // Trainer Number
     profile.set('bio', `I'm a Pokémon Trainer!`); // Default Bio
     profile.set('caughtPokemon', []);
+    profile.set('friends', []);
     await profile.save();
 
     console.log('Profile Created:', profile);

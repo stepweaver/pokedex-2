@@ -35,7 +35,11 @@ const Navbar = () => {
         </Typography>
         <Button color='inherit' component={Link} to='/main'>Pokemon</Button>
         <Button color='inherit' component={Link} to='/trainers'>Trainers</Button>
-        <Button color='inherit' component={Link} to={`/profile/${currentUser.id}`}>Profile</Button>
+        {currentUser ? (
+          <Button color='inherit' component={Link} to={`/profile/${currentUser.id}`}>Profile</Button>
+        ) : (
+          <Button color='inherit' component={Link} to='/login'>Login</Button>
+        )}
         <Button color='inherit' component={Link} to='/about'>About</Button>
         <Button color='inherit' component={Link} to='#'>Logout</Button>
         <Menu
@@ -53,11 +57,8 @@ const Navbar = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose} component={Link} to='/main'>Pokemon</MenuItem>
-          <MenuItem onClick={handleClose} component={Link} to='/trainers'>Trainers</MenuItem>
-          <MenuItem onClick={handleClose} component={Link} to={`/profile/${currentUser.id}`}>Profile</MenuItem>
-          <MenuItem onClick={handleClose} component={Link} to='/about'>About</MenuItem>
-          <MenuItem onClick={handleClose} component={Link} to='#'>Logout</MenuItem>
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={handleClose}>My account</MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
