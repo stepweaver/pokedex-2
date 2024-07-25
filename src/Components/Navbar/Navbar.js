@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { logoutUser } from './logutService';
 import Parse from 'parse';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,6 +15,7 @@ import './Navbar.css';
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const user = Parse.User.current();
@@ -28,48 +30,96 @@ const Navbar = () => {
     setAnchorEl(null);
   };
 
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      setCurrentUser(null);
+      navigate('/');
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
+
   return (
     <AppBar position='static' color='transparent'>
       <Toolbar>
-        <IconButton edge='start' color='inherit' aria-label='menu' sx={{ mr: 2 }} onClick={handleMenu}>
+        <IconButton
+          edge='start'
+          color='inherit'
+          aria-label='menu'
+          sx={{ mr: 2 }}
+          onClick={handleMenu}
+        >
           <img src={MenuIcon} alt='menu' width='24' height='24' />
         </IconButton>
         <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
           The Pokémon App
         </Typography>
-        <Button color='inherit' component={Link} to='/main'>Pokémon</Button>
-        <Button color='inherit' component={Link} to='/trainers'>Trainers</Button>
+        <Button color='inherit' component={Link} to='/main'>
+          Pokémon
+        </Button>
+        <Button color='inherit' component={Link} to='/trainers'>
+          Trainers
+        </Button>
         {currentUser ? (
-          <Button color='inherit' component={Link} to={`/profile/${currentUser.id}`}>Profile</Button>
+          <Button
+            color='inherit'
+            component={Link}
+            to={`/profile/${currentUser.id}`}
+          >
+            Profile
+          </Button>
         ) : (
-          <Button color='inherit' component={Link} to='/login'>Login</Button>
+          <Button color='inherit' component={Link} to='/login'>
+            Login
+          </Button>
         )}
-        <Button color='inherit' component={Link} to='/about'>About</Button>
-        <Button color='inherit' component={Link} to='#'>Logout</Button>
+        <Button color='inherit' component={Link} to='/about'>
+          About
+        </Button>
+        <Button color='inherit' onClick={handleLogout}>
+          Logout
+        </Button>
         <Menu
           id='menu-appbar'
           anchorEl={anchorEl}
           anchorOrigin={{
             vertical: 'top',
-            horizontal: 'right',
+            horizontal: 'right'
           }}
           keepMounted
           transformOrigin={{
             vertical: 'top',
-            horizontal: 'right',
+            horizontal: 'right'
           }}
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem color='inherit' component={Link} to='/main'>Pokémon</MenuItem>
-          <MenuItem color='inherit' component={Link} to='/trainers'>Trainers</MenuItem>
+          <MenuItem color='inherit' component={Link} to='/main'>
+            Pokémon
+          </MenuItem>
+          <MenuItem color='inherit' component={Link} to='/trainers'>
+            Trainers
+          </MenuItem>
           {currentUser ? (
-            <MenuItem color='inherit' component={Link} to={`/profile/${currentUser.id}`}>Profile</MenuItem>
+            <MenuItem
+              color='inherit'
+              component={Link}
+              to={`/profile/${currentUser.id}`}
+            >
+              Profile
+            </MenuItem>
           ) : (
-            <MenuItem color='inherit' component={Link} to='/login'>Login</MenuItem>
+            <MenuItem color='inherit' component={Link} to='/login'>
+              Login
+            </MenuItem>
           )}
-          <MenuItem color='inherit' component={Link} to='/about'>About</MenuItem>
-          <MenuItem color='inherit' component={Link} to='#'>Logout</MenuItem>
+          <MenuItem color='inherit' component={Link} to='/about'>
+            About
+          </MenuItem>
+          <MenuItem color='inherit' component={Link} to='#'>
+            Logout
+          </MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>
