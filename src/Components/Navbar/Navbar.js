@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from './assets/ball_1408998.png';
+import './Navbar.css';
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
