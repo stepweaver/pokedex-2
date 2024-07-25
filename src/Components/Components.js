@@ -6,6 +6,7 @@ import Navbar from './Navbar/Navbar';
 import Register from './Register/Register';
 import Login from './Login/Login';
 import Profile from './Profile/Profile';
+import TrainersList from './Trainers/TrainersList';
 import About from './About/About';
 
 const Components = () => {
@@ -19,6 +20,7 @@ const Components = () => {
         <Route path='/login' element={<Login />} />
         <Route path='/about' element={<About />} />
         <Route path='/profile/:userId' element={<Profile />} />
+        <Route path='/trainers' element={<TrainersList />} />
       </Routes>
     </Router>
   );
