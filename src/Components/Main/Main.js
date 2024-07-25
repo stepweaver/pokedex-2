@@ -26,6 +26,7 @@ const Main = () => {
         setFilteredPokemon={setFilteredPokemon}
       />
       <br />
+      <br />
       <PokemonList pokemon={filteredPokemon} />
     </div>
   );
