@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Parse from 'parse';
 import FriendsList from '../Friends/FriendsList.js';
 import AddRemoveFriend from '../Friends/AddRemoveFriends.js';
+import CommentsBox from '../Comments/CommentsBox';
 import './Profile.css';
 
 const Profile = () => {
@@ -63,6 +64,7 @@ const Profile = () => {
           <li key={index}>{pokemon}</li>
         ))}
       </ul>
+      <CommentsBox profileId={profile.objectId} />
     </div>
   );
 };
