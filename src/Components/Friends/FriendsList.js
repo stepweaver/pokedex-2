@@ -9,6 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import Parse from 'parse';
 
 const Demo = styled('div')(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -33,6 +34,30 @@ const FriendsList = () => {
     };
 
     fetchFriends();
+  }, []);
+
+  useEffect(() => {
+    const subscribeToOnlineStatus = async () => {
+      const Profile = Parse.Object.extend('Profile');
+      const query = new Parse.Query(Profile);
+      const subscription = await query.subscribe();
+
+      subscription.on('update', (profile) => {
+        setFriends((prevFriends) => 
+          prevFriends.map((friend) => 
+            friend.id === profile.get('user').id 
+              ? { ...friend, isOnline: profile.get('isOnline') } 
+              : friend
+          )
+        );
+      });
+
+      return () => {
+        subscription.unsubscribe();
+      };
+    };
+
+    subscribeToOnlineStatus();
   }, []);
 
   if (loading) return <div>Loading...</div>;
@@ -61,6 +86,7 @@ const FriendsList = () => {
                     {friend.username}
                   </Link>
                 }
+                secondary={friend.isOnline ? 'Online' : 'Offline'}
               />
             </ListItem>
           ))}

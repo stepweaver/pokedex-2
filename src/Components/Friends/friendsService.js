@@ -17,14 +17,20 @@ export const getFriends = async () => {
     }
     const friendIds = profile.get('friends') || [];
 
-    const friends = await Promise.all(friendIds.map(async (friendId) => {
-      const userQuery = new Parse.Query(Parse.User); // Create a new query on the User class
-      const user = await userQuery.get(friendId); // Get the user with the friendId
-      return {
-        id: friendId,
-        username: user.get('username')
-      }
-    }))
+    const friends = await Promise.all(
+      friendIds.map(async (friendId) => {
+        const userQuery = new Parse.Query(Parse.User); // Create a new query on the User class
+        const user = await userQuery.get(friendId); // Get the user with the friendId
+        const friendProfileQuery = new Parse.Query(Profile); // Create a new query on the Profile class
+        friendProfileQuery.equalTo('user', user); // Find the profile with the user
+        const friendProfile = await friendProfileQuery.first(); // Get the first profile with the user
+        return {
+          id: friendId,
+          username: user.get('username'),
+          isOnline: friendProfile.get('isOnline')
+        };
+      })
+    );
 
     return friends;
   } catch (error) {

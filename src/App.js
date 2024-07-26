@@ -6,6 +6,15 @@ import './index.css';
 
 Parse.initialize(ENV.APPLICATION_ID, ENV.JAVASCRIPT_KEY);
 Parse.serverURL = ENV.SERVER_URL;
+Parse.liveQueryServerURL = ENV.LIVEQUERY_SERVER_URL;
+
+const liveQueryClient = new Parse.LiveQueryClient({
+  applicationId: ENV.APPLICATION_ID,
+  serverURL: ENV.LIVEQUERY_SERVER_URL,
+  javascriptKey: ENV.JAVASCRIPT_KEY
+});
+
+liveQueryClient.open();
 
 const App = () => {
   return (
