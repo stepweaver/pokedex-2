@@ -14,7 +14,7 @@ export const createUser = async (newUser) => {
   }
 
   // Generate Username
-  const username = `Trainer #${generateTrainerNumber(5)}`;
+  const username = `${generateTrainerNumber(5)}`;
 
   user.set('firstName', newUser.firstName);
   user.set('lastName', newUser.lastName);

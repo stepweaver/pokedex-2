@@ -51,7 +51,7 @@ const Profile = () => {
 
   return (
     <div className='profile'>
-      <h1>{username}'s Profile</h1>
+      <h1>Trainer #{username} Profile</h1>
       <p>{trainerBio}</p>
       {isOwnProfile ? (
         <FriendsList userId={userId} />
