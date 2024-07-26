@@ -31,15 +31,15 @@ export const getPokemon = async () => {
         };
       } catch (error) {
         console.error(`Failed to fetch details for ${pokemon.name}:`, error);
-        return null; // or handle the error as needed
+        return null;
       }
     });
 
     const pokemon = await Promise.all(promises);
-    return pokemon.filter(p => p !== null); // Filter out any null values due to fetch failures
+    return pokemon.filter(p => p !== null);
   } catch (error) {
     console.error('Failed to fetch Pokémon list:', error);
-    return []; // or handle the error as needed
+    return [];
   }
 };
 
@@ -53,6 +53,6 @@ export const getPokemonTypes = async () => {
     return data.results.map((type) => type.name);
   } catch (error) {
     console.error('Failed to fetch Pokémon types:', error);
-    return []; // or handle the error as needed
+    return [];
   }
 };
