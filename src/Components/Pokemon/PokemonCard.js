@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
-import './PokemonCard.css';
+import './Pokemon.css';
 
 const PokemonCard = ({ pokemon }) => {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -23,11 +23,15 @@ const PokemonCard = ({ pokemon }) => {
   }
 
   return (
-    <Card className={`pokemon-card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip} sx={{ maxWidth: 345 }}> 
-      <CardActionArea> 
+    <Card
+      className={`pokemon-card ${isFlipped ? 'flipped' : ''}`}
+      onClick={handleFlip}
+      sx={{ maxWidth: 250, backgroundColor: '#2a2a2a' }}
+    >
+      <CardActionArea>
         <CardMedia
           component='img'
-          height='140'
+          height='100'
           image={pokemon.image}
           alt={pokemon.name}
         />
