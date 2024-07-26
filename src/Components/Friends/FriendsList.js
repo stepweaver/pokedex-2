@@ -71,7 +71,7 @@ const FriendsList = () => {
         Friends List
       </Typography>
       <Demo>
-        <List>
+        <List style={{ backgroundColor: 'transparent' }}>
           {friends.map((friend, index) => (
             <ListItem key={index}>
               <ListItemAvatar>
@@ -83,7 +83,7 @@ const FriendsList = () => {
                     to={`/profile/${friend.id}`}
                     style={{ color: '#fff', textDecoration: 'none' }}
                   >
-                    {friend.username}
+                    Trainer {friend.username}
                   </Link>
                 }
                 secondary={

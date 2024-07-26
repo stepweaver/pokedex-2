@@ -73,7 +73,7 @@ const CommentsBox = ({ profileId }) => {
               }}
             >
               <Typography variant='body1'>
-                <strong>{comment.user.username}:</strong>
+                <strong>Trainer {comment.user.username}:</strong>
               </Typography>
               <Typography
                 variant='caption'
@@ -85,7 +85,7 @@ const CommentsBox = ({ profileId }) => {
             </Box>
             <Typography
               variant='body2'
-              sx={{ marginTop: 1, fontWeight: 'bold' }}
+              sx={{ marginTop: 1, fontWeight: 'bold', fontSize: '0.875rem' }}
             >
               {comment.comment}
             </Typography>

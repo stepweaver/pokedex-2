@@ -25,7 +25,7 @@ const Register = () => {
     const userRegistered = await createUser(newUser);
     if (userRegistered) {
       alert(`${userRegistered.get('firstName')} has been registered!`);
-      navigate(`/profile/${userRegistered.id}`);
+      navigate('/login');
     }
   };
 

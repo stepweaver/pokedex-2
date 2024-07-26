@@ -24,20 +24,20 @@ const TrainersList = () => {
   }, []);
 
   return (
-    <Paper sx={{ padding: 2 }}>
-      <Typography variant='h5' component='h2' gutterBottom>
+    <Paper sx={{ padding: 2, backgroundColor: 'transparent' }}>
+      <Typography variant='h5' component='h2' gutterBottom sx={{ color: '#f0f0f0' }}>
         Trainers
       </Typography>
       <List>
         {trainers.map((trainer, index) => (
-          <ListItem button key={index}>
+          <ListItem key={index}>
             <ListItemText
               primary={
                 <Link 
                   to={`/profile/${trainer.user}`} 
-                  style={{ color: '#000', textDecoration: 'none' }}
+                  style={{ color: '#f0f0f0', textDecoration: 'none' }}
                 >
-                  {trainer.username}
+                  Trainer {trainer.username}
                 </Link>
               }
             />
