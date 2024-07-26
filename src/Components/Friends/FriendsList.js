@@ -8,8 +8,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
 import Parse from 'parse';
+import Typography from '@mui/material/Typography';
+import { Chip } from '@mui/material';
+import { green } from '@mui/material/colors';
 
 const Demo = styled('div')(({ theme }) => ({
   backgroundColor: 'transparent',
@@ -43,10 +45,10 @@ const FriendsList = () => {
       const subscription = await query.subscribe();
 
       subscription.on('update', (profile) => {
-        setFriends((prevFriends) => 
-          prevFriends.map((friend) => 
-            friend.id === profile.get('user').id 
-              ? { ...friend, isOnline: profile.get('isOnline') } 
+        setFriends((prevFriends) =>
+          prevFriends.map((friend) =>
+            friend.id === profile.get('user').id
+              ? { ...friend, isOnline: profile.get('isOnline') }
               : friend
           )
         );
@@ -73,20 +75,32 @@ const FriendsList = () => {
           {friends.map((friend, index) => (
             <ListItem key={index}>
               <ListItemAvatar>
-                <Avatar>
-                  {friend.username.charAt(0).toUpperCase()}
-                </Avatar>
+                <Avatar>{friend.username.charAt(0).toUpperCase()}</Avatar>
               </ListItemAvatar>
               <ListItemText
                 primary={
-                  <Link 
-                    to={`/profile/${friend.id}`} 
+                  <Link
+                    to={`/profile/${friend.id}`}
                     style={{ color: '#fff', textDecoration: 'none' }}
                   >
                     {friend.username}
                   </Link>
                 }
-                secondary={friend.isOnline ? 'Online' : 'Offline'}
+                secondary={
+                  <Chip
+                    label={friend.isOnline ? 'Online' : 'Offline'}
+                    size='small'
+                    style={{
+                      backgroundColor: friend.isOnline
+                        ? green[500]
+                        : 'transparent',
+                      color: friend.isOnline ? 'white' : 'gray',
+                      border: friend.isOnline ? 'none' : '2px solid gray',
+                      padding: '2px 4px',
+                      fontSize: '0.75rem'
+                    }}
+                  />
+                }
               />
             </ListItem>
           ))}
